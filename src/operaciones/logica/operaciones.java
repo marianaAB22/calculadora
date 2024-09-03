@@ -13,30 +13,28 @@ public class operaciones {
 
     
     public operaciones(){
-        resultado = 0;
 
     }
     
     public double Sumar(float num1, float num2){
         double suma = num1+num2;
-        resultado += suma;
+
         return suma;
     }
     
     public double Restar(float num1, float num2){
         double resta = num1-num2;
-        resultado += resta;
+
         return resta;
     }
 
     public double Multiplicar(float num1, float num2){
         double multi = num1*num2;
-        resultado += multi;
+
         return multi;
     }
     public double Dividir(float num1, float num2){
         double divi = num1/num2;
-        resultado += divi;
         return divi;
     }
 }
