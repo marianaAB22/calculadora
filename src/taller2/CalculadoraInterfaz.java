@@ -4,11 +4,7 @@
  */
 package taller2;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -97,12 +93,16 @@ public class CalculadoraInterfaz {
         JButton botonCalcular = new JButton("Calcular");
         botonCalcular.setBounds(310, 450, 150, 30);
         ventana.add(botonCalcular);
-        
-        JButton botonSumar = new JButton("Sumar");
-        botonSumar.setBounds(310, 150, 150, 30);
-        ventana.add(botonSumar);
-        
-        
+      
+        String[] opciones= new String[4];
+        opciones[0] = "sumar";
+        opciones[1] = "restar";
+        opciones[2] = "multiplicar";
+        opciones[3] = "dividir";
+        JComboBox combo1 = new JComboBox(opciones);
+        combo1.setBounds(310, 150, 150, 30);
+        combo1.setSelectedIndex(0);
+        ventana.add(combo1);
         
 
 
