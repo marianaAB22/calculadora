@@ -5,6 +5,8 @@
 package taller2;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -104,10 +106,157 @@ public class CalculadoraInterfaz {
         combo1.setSelectedIndex(0);
         ventana.add(combo1);
         
+        
+        //FUNCIONES PARA EL MOUSE
+        boton1.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero1 = "1";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero1); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero1); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
+        boton2.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero2 = "2";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero2); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero2); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
+        boton3.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero3 = "3";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero3); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero3); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton4.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero4 = "4";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero4); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero4); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton5.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero5 = "5";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero5); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero5); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton6.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero6 = "6";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero6); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero6); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton7.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero7 = "7";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero7); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero7); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton8.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero8 = "8";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero8); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero8); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        boton9.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero9 = "9";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero9); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero9); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        boton0.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                String numero0 = "0";
+                String PrimerNumero = campo1.getText();
+                String SegundoNumero = campo2.getText();
+                if (PrimerNumero.equals("")) {
+                    campo1.setText(numero0); // Asignar el número a campo1
+                } else if (SegundoNumero.equals("")) {
+                    campo2.setText(numero0); // Asignar el número a campo2 si campo1 ya está lleno
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
+
+        
 
 
-
- 
+        ventana.setLayout(null);
         ventana.setVisible(true);
     }
     
