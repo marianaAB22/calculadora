@@ -262,7 +262,7 @@ public class CalculadoraInterfaz {
                 } 
             } 
         }); 
-
+        //hola
         //OPERACIONES BOTON CALCULAR
         botonCalcular.addActionListener(new ActionListener() { 
             public void actionPerformed(ActionEvent e) { 
