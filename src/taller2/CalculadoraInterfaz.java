@@ -120,7 +120,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero1);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -150,7 +150,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero3);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -180,7 +180,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero5);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -195,7 +195,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero6);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -210,7 +210,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero7);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -225,7 +225,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero8); 
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -240,7 +240,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero9);  
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
 
@@ -258,7 +258,7 @@ public class CalculadoraInterfaz {
                 } else if (SegundoNumero.equals("")) { 
                     campo2.setText(numero0); 
                 } else { 
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MAS NUMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
@@ -289,7 +289,7 @@ public class CalculadoraInterfaz {
                         } 
                         break; 
                     default: 
-                        JOptionPane.showMessageDialog(ventana, "Operación no válida"); 
+                        JOptionPane.showMessageDialog(ventana, "Operacion no valida"); 
                         return; 
                 } 
                 JOptionPane.showMessageDialog(ventana, "El resultado es: " + resultado); 
