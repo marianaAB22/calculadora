@@ -10,15 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
-/**
- *
- * @author Administrator
- */
+
 public class CalculadoraInterfaz {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         JFrame ventana = new JFrame("mi primera ventana");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,9 +22,7 @@ public class CalculadoraInterfaz {
         JLabel etiqueta = new JLabel("CALCULADORA UAM");
         etiqueta.setBounds(330, 10, 150, 30);
         ventana.add(etiqueta);
-    /**    
-        String informacionJLabel = etiqueta.getText();
-        System.out.println(informacionJLabel); */ 
+
         JLabel etiqueta2 = new JLabel();
         etiqueta2.setText("NUMERO 1:");
         etiqueta2.setBounds(220, 70, 150, 30);
