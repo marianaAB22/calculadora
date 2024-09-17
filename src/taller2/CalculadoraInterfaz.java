@@ -221,9 +221,9 @@ public class CalculadoraInterfaz {
                 String PrimerNumero = campo1.getText(); 
                 String SegundoNumero = campo2.getText(); 
                 if (PrimerNumero.equals("")) { 
-                    campo1.setText(numero8); // Asignar el número a campo1 
+                    campo1.setText(numero8);
                 } else if (SegundoNumero.equals("")) { 
-                    campo2.setText(numero8); // Asignar el número a campo2 si campo1 ya está lleno 
+                    campo2.setText(numero8); 
                 } else { 
                     JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
@@ -254,15 +254,15 @@ public class CalculadoraInterfaz {
                 String PrimerNumero = campo1.getText(); 
                 String SegundoNumero = campo2.getText(); 
                 if (PrimerNumero.equals("")) { 
-                    campo1.setText(numero0); // Asignar el número a campo1 
+                    campo1.setText(numero0); 
                 } else if (SegundoNumero.equals("")) { 
-                    campo2.setText(numero0); // Asignar el número a campo2 si campo1 ya está lleno 
+                    campo2.setText(numero0); 
                 } else { 
                     JOptionPane.showMessageDialog(null, "NO SE PUEDEN INGRESAR MÁS NÚMEROS", "INFO", JOptionPane.INFORMATION_MESSAGE); 
                 } 
             } 
         }); 
-        //hola
+ 
         //OPERACIONES BOTON CALCULAR
         botonCalcular.addActionListener(new ActionListener() { 
             public void actionPerformed(ActionEvent e) { 
