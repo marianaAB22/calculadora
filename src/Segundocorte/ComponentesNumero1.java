@@ -442,7 +442,7 @@ public class ComponentesNumero1 extends javax.swing.JFrame {
 
     private void botonEnviarCartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarCartaActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, 
-        "¿seguro que desea enviar la informacion?", 
+        "¿Seguro que desea enviar la informacion?", 
         "Confirmacion de envio", 
         JOptionPane.YES_NO_OPTION, 
         JOptionPane.QUESTION_MESSAGE);
@@ -505,7 +505,7 @@ public class ComponentesNumero1 extends javax.swing.JFrame {
 
     private void botonInstructivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInstructivoActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, 
-        "¿desea que se le envie el instructivo al correo proporcionado en la ficha de inscripcion?", 
+        "¿Desea que se le envie el instructivo al correo proporcionado en la ficha de inscripcion?", 
         "Confirmacion de envio", 
         JOptionPane.YES_NO_OPTION, 
         JOptionPane.QUESTION_MESSAGE);
