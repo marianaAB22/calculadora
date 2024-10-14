@@ -4,7 +4,7 @@
  */
 package ejemploKeyType;
 
-
+import java.awt.event.*;
 
 /**
  *
@@ -33,9 +33,20 @@ public class miniCalculadora extends javax.swing.JFrame {
         campoNumero2 = new javax.swing.JTextField();
         campoNumero1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        botonSumar = new javax.swing.JButton();
+        botonResultado = new javax.swing.JButton();
         botonNumero2 = new javax.swing.JButton();
         botonNumero3 = new javax.swing.JButton();
+        botonNumero0 = new javax.swing.JButton();
+        botonNumero4 = new javax.swing.JButton();
+        botonNumero5 = new javax.swing.JButton();
+        botonNumero6 = new javax.swing.JButton();
+        botonNumero7 = new javax.swing.JButton();
+        botonNumero8 = new javax.swing.JButton();
+        botonNumero9 = new javax.swing.JButton();
+        botonSuma = new javax.swing.JButton();
+        botonResta = new javax.swing.JButton();
+        botonMultiplicacion = new javax.swing.JButton();
+        botonDivision = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -78,16 +89,16 @@ public class miniCalculadora extends javax.swing.JFrame {
 
         jLabel1.setText("MINI CALCULADORA");
 
-        botonSumar.setText("SUMAR");
-        botonSumar.setFocusable(false);
-        botonSumar.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonResultado.setText("RESULTADO");
+        botonResultado.setFocusable(false);
+        botonResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonSumarMouseClicked(evt);
+                botonResultadoMouseClicked(evt);
             }
         });
-        botonSumar.addActionListener(new java.awt.event.ActionListener() {
+        botonResultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSumarActionPerformed(evt);
+                botonResultadoActionPerformed(evt);
             }
         });
 
@@ -117,55 +128,240 @@ public class miniCalculadora extends javax.swing.JFrame {
             }
         });
 
+        botonNumero0.setText("0");
+        botonNumero0.setFocusable(false);
+        botonNumero0.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero0MouseClicked(evt);
+            }
+        });
+        botonNumero0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero0ActionPerformed(evt);
+            }
+        });
+
+        botonNumero4.setText("4");
+        botonNumero4.setFocusable(false);
+        botonNumero4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero4MouseClicked(evt);
+            }
+        });
+        botonNumero4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero4ActionPerformed(evt);
+            }
+        });
+
+        botonNumero5.setText("5");
+        botonNumero5.setFocusable(false);
+        botonNumero5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero5MouseClicked(evt);
+            }
+        });
+        botonNumero5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero5ActionPerformed(evt);
+            }
+        });
+
+        botonNumero6.setText("6");
+        botonNumero6.setFocusable(false);
+        botonNumero6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero6MouseClicked(evt);
+            }
+        });
+        botonNumero6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero6ActionPerformed(evt);
+            }
+        });
+
+        botonNumero7.setText("7");
+        botonNumero7.setFocusable(false);
+        botonNumero7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero7MouseClicked(evt);
+            }
+        });
+        botonNumero7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero7ActionPerformed(evt);
+            }
+        });
+
+        botonNumero8.setText("8");
+        botonNumero8.setFocusable(false);
+        botonNumero8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero8MouseClicked(evt);
+            }
+        });
+        botonNumero8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero8ActionPerformed(evt);
+            }
+        });
+
+        botonNumero9.setText("9");
+        botonNumero9.setFocusable(false);
+        botonNumero9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero9MouseClicked(evt);
+            }
+        });
+        botonNumero9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNumero9ActionPerformed(evt);
+            }
+        });
+
+        botonSuma.setText("+");
+        botonSuma.setFocusable(false);
+        botonSuma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSumaMouseClicked(evt);
+            }
+        });
+        botonSuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSumaActionPerformed(evt);
+            }
+        });
+
+        botonResta.setText("-");
+        botonResta.setFocusable(false);
+        botonResta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRestaMouseClicked(evt);
+            }
+        });
+        botonResta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRestaActionPerformed(evt);
+            }
+        });
+
+        botonMultiplicacion.setText("*");
+        botonMultiplicacion.setFocusable(false);
+        botonMultiplicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonMultiplicacionMouseClicked(evt);
+            }
+        });
+        botonMultiplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMultiplicacionActionPerformed(evt);
+            }
+        });
+
+        botonDivision.setText("/");
+        botonDivision.setFocusable(false);
+        botonDivision.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDivisionMouseClicked(evt);
+            }
+        });
+        botonDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDivisionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(126, 126, 126)
-                            .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonNumero4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonNumero5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonNumero6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
+                        .addGap(13, 13, 13)
+                        .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonSuma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonResta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMultiplicacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonDivision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(botonSumar)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                        .addGap(163, 163, 163)
+                        .addComponent(botonResultado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonNumero2)
-                    .addComponent(botonNumero1)
-                    .addComponent(botonNumero3))
-                .addGap(60, 60, 60)
-                .addComponent(botonSumar)
+                    .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNumero4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonResta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMultiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(botonResultado)
+                .addGap(18, 18, 18)
                 .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,9 +375,9 @@ public class miniCalculadora extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoResultadoActionPerformed
 
-    private void botonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumarActionPerformed
+    private void botonResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResultadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonSumarActionPerformed
+    }//GEN-LAST:event_botonResultadoActionPerformed
 
     private void campoNumero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumero2ActionPerformed
         // TODO add your handling code here:
@@ -222,12 +418,12 @@ public class miniCalculadora extends javax.swing.JFrame {
         }           
     }//GEN-LAST:event_botonNumero3MouseClicked
 
-    private void botonSumarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumarMouseClicked
+    private void botonResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonResultadoMouseClicked
         int numero1 = Integer.parseInt(campoNumero1.getText());
-        int numero2 = Integer.parseInt(campoNumero1.getText());
+        int numero2 = Integer.parseInt(campoNumero2.getText());
         int resultado = numero1+numero2;
         campoResultado.setText(String.valueOf(resultado));
-    }//GEN-LAST:event_botonSumarMouseClicked
+    }//GEN-LAST:event_botonResultadoMouseClicked
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
         String numero = String.valueOf(evt.getKeyChar()); //caprurando alguna tecla que presiono el usuario
@@ -247,7 +443,7 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("2");
             }
-            
+        }    
         if(numero.equals("3")){
             if(campoNumero1.getText().equals("")){
             campoNumero1.setText("3");
@@ -257,12 +453,83 @@ public class miniCalculadora extends javax.swing.JFrame {
             }  
             
         }
+        
+        if(numero.equals("4")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("4");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("4");
+            }  
+            
+        }
+        if(numero.equals("5")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("5");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("5");
+            }  
+            
+        }
+        if(numero.equals("6")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("6");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("6");
+            }  
+            
+        }        
+        if(numero.equals("7")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("7");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("7");
+            }  
+            
+        }
+        if(numero.equals("8")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("8");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("8");
+            }  
+            
+        }
+        if(numero.equals("9")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("9");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("9");
+            }  
+            
+        }
+        if(numero.equals("0")){
+            if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("0");
+            }
+            else if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("0");
+            }  
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         }
         
     }//GEN-LAST:event_formKeyTyped
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK ENTER){
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             int numero1 = Integer.parseInt(campoNumero1.getText());
             int numero2 = Integer.parseInt(campoNumero1.getText());
             int resultado = numero1+numero2;
@@ -271,6 +538,129 @@ public class miniCalculadora extends javax.swing.JFrame {
             campoNumero2.setText("");
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void botonNumero0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero0MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("0");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("0");
+        }    
+    }//GEN-LAST:event_botonNumero0MouseClicked
+
+    private void botonNumero0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero0ActionPerformed
+
+    private void botonNumero4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero4MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("4");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("4");
+        }    
+    }//GEN-LAST:event_botonNumero4MouseClicked
+
+    private void botonNumero4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero4ActionPerformed
+
+    private void botonNumero5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero5MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("5");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("5");
+        }    
+    }//GEN-LAST:event_botonNumero5MouseClicked
+
+    private void botonNumero5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero5ActionPerformed
+
+    private void botonNumero6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero6MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("6");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("6");
+        }    
+    }//GEN-LAST:event_botonNumero6MouseClicked
+
+    private void botonNumero6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero6ActionPerformed
+
+    private void botonNumero7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero7MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("7");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("7");
+        }    
+    }//GEN-LAST:event_botonNumero7MouseClicked
+
+    private void botonNumero7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero7ActionPerformed
+
+    private void botonNumero8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero8MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("8");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("8");
+        }    
+    }//GEN-LAST:event_botonNumero8MouseClicked
+
+    private void botonNumero8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero8ActionPerformed
+
+    private void botonNumero9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero9MouseClicked
+        if(campoNumero1.getText().equals("")){
+            campoNumero1.setText("9");
+        }
+        else if(campoNumero2.getText().equals("")){
+            campoNumero2.setText("9");
+        }    
+    }//GEN-LAST:event_botonNumero9MouseClicked
+
+    private void botonNumero9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNumero9ActionPerformed
+
+    private void botonSumaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumaMouseClicked
+         
+    }//GEN-LAST:event_botonSumaMouseClicked
+
+    private void botonSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSumaActionPerformed
+
+    private void botonRestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRestaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRestaMouseClicked
+
+    private void botonRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRestaActionPerformed
+
+    private void botonMultiplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicacionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonMultiplicacionMouseClicked
+
+    private void botonMultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonMultiplicacionActionPerformed
+
+    private void botonDivisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDivisionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonDivisionMouseClicked
+
+    private void botonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDivisionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonDivisionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,10 +698,21 @@ public class miniCalculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonDivision;
+    private javax.swing.JButton botonMultiplicacion;
+    private javax.swing.JButton botonNumero0;
     private javax.swing.JButton botonNumero1;
     private javax.swing.JButton botonNumero2;
     private javax.swing.JButton botonNumero3;
-    private javax.swing.JButton botonSumar;
+    private javax.swing.JButton botonNumero4;
+    private javax.swing.JButton botonNumero5;
+    private javax.swing.JButton botonNumero6;
+    private javax.swing.JButton botonNumero7;
+    private javax.swing.JButton botonNumero8;
+    private javax.swing.JButton botonNumero9;
+    private javax.swing.JButton botonResta;
+    private javax.swing.JButton botonResultado;
+    private javax.swing.JButton botonSuma;
     private javax.swing.JTextField campoNumero1;
     private javax.swing.JTextField campoNumero2;
     private javax.swing.JTextField campoResultado;
