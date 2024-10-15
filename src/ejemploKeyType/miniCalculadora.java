@@ -5,6 +5,7 @@
 package ejemploKeyType;
 
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -47,6 +48,7 @@ public class miniCalculadora extends javax.swing.JFrame {
         botonResta = new javax.swing.JButton();
         botonMultiplicacion = new javax.swing.JButton();
         botonDivision = new javax.swing.JButton();
+        campoSimbolo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -271,50 +273,56 @@ public class miniCalculadora extends javax.swing.JFrame {
             }
         });
 
+        campoSimbolo.setFocusable(false);
+        campoSimbolo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoSimboloMouseClicked(evt);
+            }
+        });
+        campoSimbolo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSimboloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonNumero4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(botonNumero4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botonNumero5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botonNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(botonNumero5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonNumero6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonNumero6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonNumero7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonSuma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonResta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonMultiplicacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonDivision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(botonNumero8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botonNumero9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoSimbolo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1))
@@ -324,7 +332,13 @@ public class miniCalculadora extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
                         .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonSuma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonResta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMultiplicacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonDivision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +348,8 @@ public class miniCalculadora extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSimbolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,6 +382,9 @@ public class miniCalculadora extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    boolean operacionSeleccionada = false; 
+    
     private void botonNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonNumero1ActionPerformed
@@ -392,41 +410,86 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero3ActionPerformed
 
     private void botonNumero1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero1MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("1");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("2");
-        }        
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("1");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("1");
+            }
+        }   
     }//GEN-LAST:event_botonNumero1MouseClicked
 
     private void botonNumero2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero2MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("2");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("2");
-        }          
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("2");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("2");
+            }
+        }        
     }//GEN-LAST:event_botonNumero2MouseClicked
 
     private void botonNumero3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero3MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("3");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("3");
-        }           
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("3");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("3");
+            }
+        }          
     }//GEN-LAST:event_botonNumero3MouseClicked
 
     private void botonResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonResultadoMouseClicked
-        int numero1 = Integer.parseInt(campoNumero1.getText());
-        int numero2 = Integer.parseInt(campoNumero2.getText());
-        int resultado = numero1+numero2;
-        campoResultado.setText(String.valueOf(resultado));
+        if(!campoNumero1.getText().equals("") && !campoNumero2.getText().equals("")){
+            int numero1 = Integer.parseInt(campoNumero1.getText());
+            int numero2 = Integer.parseInt(campoNumero2.getText());
+            int resultado = 0;
+
+            
+            switch(campoSimbolo.getText()){
+                case "+":
+                    resultado = numero1+numero2;
+                    break;
+                case "-":
+                    resultado = numero1-numero2;
+                    break;
+                case "*":
+                    resultado = numero1*numero2;
+                    break;
+                case "/":
+                    if(numero2 != 0){
+                        resultado = numero1/numero2;
+                    }else{
+                        JOptionPane.showMessageDialog(null, "NO SE PUEDE DIVIDIR ENTRE O", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        campoNumero1.setText("");
+                        campoSimbolo.setText("");
+                        campoNumero2.setText("");
+                        campoResultado.setText("");
+                        operacionSeleccionada = false;
+                        return;
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "no se pudo realizar la operacion", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+            }
+            
+            campoResultado.setText("Resultado: "+ resultado);
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+            campoSimbolo.setText("");
+            operacionSeleccionada = false;
+        }
     }//GEN-LAST:event_botonResultadoMouseClicked
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-        String numero = String.valueOf(evt.getKeyChar()); //caprurando alguna tecla que presiono el usuario
+        String numero = String.valueOf(evt.getKeyChar());
         if(numero.equals("1")){
             if(campoNumero1.getText().equals("")){
             campoNumero1.setText("1");
@@ -434,7 +497,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("1");
             }  
-            
         }
         if(numero.equals("2")){
             if(campoNumero1.getText().equals("")){
@@ -451,9 +513,7 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("3");
             }  
-            
         }
-        
         if(numero.equals("4")){
             if(campoNumero1.getText().equals("")){
             campoNumero1.setText("4");
@@ -461,7 +521,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("4");
             }  
-            
         }
         if(numero.equals("5")){
             if(campoNumero1.getText().equals("")){
@@ -470,7 +529,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("5");
             }  
-            
         }
         if(numero.equals("6")){
             if(campoNumero1.getText().equals("")){
@@ -479,7 +537,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("6");
             }  
-            
         }        
         if(numero.equals("7")){
             if(campoNumero1.getText().equals("")){
@@ -488,7 +545,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("7");
             }  
-            
         }
         if(numero.equals("8")){
             if(campoNumero1.getText().equals("")){
@@ -497,7 +553,6 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("8");
             }  
-            
         }
         if(numero.equals("9")){
             if(campoNumero1.getText().equals("")){
@@ -505,8 +560,7 @@ public class miniCalculadora extends javax.swing.JFrame {
             }
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("9");
-            }  
-            
+            }      
         }
         if(numero.equals("0")){
             if(campoNumero1.getText().equals("")){
@@ -515,37 +569,86 @@ public class miniCalculadora extends javax.swing.JFrame {
             else if(campoNumero2.getText().equals("")){
                 campoNumero2.setText("0");
             }  
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-        }
-        
+        } 
     }//GEN-LAST:event_formKeyTyped
 
+    char operacion;
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            int numero1 = Integer.parseInt(campoNumero1.getText());
-            int numero2 = Integer.parseInt(campoNumero1.getText());
-            int resultado = numero1+numero2;
-            campoResultado.setText(String.valueOf(resultado));
+        if(campoNumero1.getText().isEmpty()){
+            return;
+        }
+        int numero1 = Integer.parseInt(campoNumero1.getText());
+        char simbolo = evt.getKeyChar();
+    
+        if (!operacionSeleccionada){
+            if (simbolo == '+') {
+                operacion = '+';
+                campoSimbolo.setText("+");
+                operacionSeleccionada = true;
+            } else if (simbolo == '-') {
+                operacion = '-';
+                campoSimbolo.setText("-");
+                operacionSeleccionada = true;
+            } else if (simbolo == '*') {
+                operacion = '*';
+                campoSimbolo.setText("*");
+                operacionSeleccionada = true;
+            } else if (simbolo == '/') {
+                operacion = '/';
+                campoSimbolo.setText("/");
+                operacionSeleccionada = true;
+            }
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(campoNumero2.getText().isEmpty()){
+                return;
+            }
+            int numero2=Integer.parseInt(campoNumero2.getText()); 
+            int resultado=0;
+            switch (operacion) {
+                case '+':
+                    resultado = numero1+numero2;
+                    break;
+                case '-':
+                    resultado = numero1-numero2;
+                    break;
+                case '*':
+                    resultado = numero1*numero2;
+                    break;
+                case '/':
+                    if (numero2!=0) {
+                        resultado = numero1/numero2;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "NO SE PUEDE DIVIDIR ENTRE O", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        campoNumero1.setText("");
+                        campoNumero2.setText("");
+                        campoSimbolo.setText("");
+                        return;
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "OPERACION NO VALIDA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+            }
+            campoResultado.setText("Resultado: "+ resultado);
             campoNumero1.setText("");
             campoNumero2.setText("");
+            campoSimbolo.setText("");
         }
+           
     }//GEN-LAST:event_formKeyPressed
 
     private void botonNumero0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero0MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("0");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("0");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("0");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("0");
+            }
+        }  
     }//GEN-LAST:event_botonNumero0MouseClicked
 
     private void botonNumero0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero0ActionPerformed
@@ -553,12 +656,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero0ActionPerformed
 
     private void botonNumero4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero4MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("4");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("4");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("4");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")) {
+                campoNumero2.setText("4");
+            }
+        } 
     }//GEN-LAST:event_botonNumero4MouseClicked
 
     private void botonNumero4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero4ActionPerformed
@@ -566,12 +672,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero4ActionPerformed
 
     private void botonNumero5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero5MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("5");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("5");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("5");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("5");
+            }
+        }   
     }//GEN-LAST:event_botonNumero5MouseClicked
 
     private void botonNumero5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero5ActionPerformed
@@ -579,12 +688,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero5ActionPerformed
 
     private void botonNumero6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero6MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("6");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("6");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")){
+                campoNumero1.setText("6");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")){
+                campoNumero2.setText("6");
+            }
+        }  
     }//GEN-LAST:event_botonNumero6MouseClicked
 
     private void botonNumero6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero6ActionPerformed
@@ -592,12 +704,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero6ActionPerformed
 
     private void botonNumero7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero7MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("7");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("7");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("7");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")) {
+                campoNumero2.setText("7");
+            }
+        }  
     }//GEN-LAST:event_botonNumero7MouseClicked
 
     private void botonNumero7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero7ActionPerformed
@@ -605,12 +720,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero7ActionPerformed
 
     private void botonNumero8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero8MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("8");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("8");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("8");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")) {
+                campoNumero2.setText("8");
+            }
+        }  
     }//GEN-LAST:event_botonNumero8MouseClicked
 
     private void botonNumero8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero8ActionPerformed
@@ -618,12 +736,15 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero8ActionPerformed
 
     private void botonNumero9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero9MouseClicked
-        if(campoNumero1.getText().equals("")){
-            campoNumero1.setText("9");
-        }
-        else if(campoNumero2.getText().equals("")){
-            campoNumero2.setText("9");
-        }    
+        if(!operacionSeleccionada) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("9");
+            }
+        }else{
+            if(campoNumero2.getText().equals("")) {
+                campoNumero2.setText("9");
+            }
+        }   
     }//GEN-LAST:event_botonNumero9MouseClicked
 
     private void botonNumero9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNumero9ActionPerformed
@@ -631,15 +752,21 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNumero9ActionPerformed
 
     private void botonSumaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumaMouseClicked
-         
+    if(!campoNumero1.getText().equals("")){
+        campoSimbolo.setText("+");
+        operacionSeleccionada = true;
+        }
     }//GEN-LAST:event_botonSumaMouseClicked
 
     private void botonSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botonSumaActionPerformed
 
     private void botonRestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRestaMouseClicked
-        // TODO add your handling code here:
+    if(!campoNumero1.getText().equals("")){
+        campoSimbolo.setText("-");
+        operacionSeleccionada = true;
+        }
     }//GEN-LAST:event_botonRestaMouseClicked
 
     private void botonRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestaActionPerformed
@@ -647,7 +774,10 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRestaActionPerformed
 
     private void botonMultiplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicacionMouseClicked
-        // TODO add your handling code here:
+    if(!campoNumero1.getText().equals("")){
+        campoSimbolo.setText("*");
+        operacionSeleccionada = true;
+        }
     }//GEN-LAST:event_botonMultiplicacionMouseClicked
 
     private void botonMultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicacionActionPerformed
@@ -655,12 +785,23 @@ public class miniCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMultiplicacionActionPerformed
 
     private void botonDivisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDivisionMouseClicked
-        // TODO add your handling code here:
+    if(!campoNumero1.getText().equals("")){
+        campoSimbolo.setText("/");
+        operacionSeleccionada = true;
+        }
     }//GEN-LAST:event_botonDivisionMouseClicked
 
     private void botonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDivisionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonDivisionActionPerformed
+
+    private void campoSimboloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSimboloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSimboloActionPerformed
+
+    private void campoSimboloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoSimboloMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSimboloMouseClicked
 
     /**
      * @param args the command line arguments
@@ -716,6 +857,7 @@ public class miniCalculadora extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumero1;
     private javax.swing.JTextField campoNumero2;
     private javax.swing.JTextField campoResultado;
+    private javax.swing.JTextField campoSimbolo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
