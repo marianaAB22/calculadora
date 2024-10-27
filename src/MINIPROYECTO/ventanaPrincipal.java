@@ -4,19 +4,97 @@
  */
 package MINIPROYECTO;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Administrator
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ventanaPrincipal
-     */
+    private FormularioContacto formularioContacto;
+    private JPanel panelPrincipal;
+   
     public ventanaPrincipal() {
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(173, 216, 230));
+        formularioContacto = new FormularioContacto();
+        panelPrincipal = new JPanel();
+        
+        panelPrincipal.setLayout(new BorderLayout()); 
 
+        // Añadir contenido inicial: título y tabla
+        panelPrincipal.add(tituloGestorContactos, BorderLayout.NORTH);
+        panelPrincipal.add(jScrollPane1, BorderLayout.CENTER); // Agrega el JScrollPane que contiene la tabla
+
+        setContentPane(panelPrincipal); // Establece el panel principal como contenido del JFrame
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        
+        //JTable
+        //Definir los nombres de las columnas
+        String[] columnas = {"Nombre", "Apellido", "Telefono", "Correo", "Direccion", "Estado Civil"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        jTable1.setModel(modeloTabla);
+        
+
+
+        //Añade el actionListener para el menu de agregar contacto
+        MenuItemAgregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarFormularioContacto();
+            }
+        });
+        
+        menuItemArchivoSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salirPrograma();
+            }
+        });
+         
+    }
+    
+    private void salirPrograma() {
+        int respuesta = JOptionPane.showConfirmDialog(
+            null, 
+            "¿Estás seguro de que deseas salir?", 
+            "Confirmar Salida", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.WARNING_MESSAGE
+        );
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+
+    public void agregarContacto(String nombre, String apellido, String telefono, String correo, String direccion, String estadoCivil) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTable1.getModel();
+        modeloTabla.addRow(new Object[] {nombre, apellido, telefono, correo, direccion, estadoCivil});
+    }
+    
+    private void mostrarFormularioContacto() {
+        panelPrincipal.removeAll();
+        panelPrincipal.add(formularioContacto, BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }
+    
+    
+    public void mostrarVentanaPrincipal() {
+        panelPrincipal.removeAll(); 
+        panelPrincipal.add(tituloGestorContactos, BorderLayout.NORTH); 
+        panelPrincipal.add(jScrollPane1, BorderLayout.CENTER); 
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
     }
 
     /**
@@ -28,31 +106,169 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
         tituloGestorContactos = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        MenuItemAgregar = new javax.swing.JMenuItem();
+        MenuItemEditar = new javax.swing.JMenuItem();
+        MenuItemEliminar = new javax.swing.JMenuItem();
+        MenuItemBuscar = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        menuItemArchivoGuardar = new javax.swing.JMenuItem();
+        menuItemArchivoSalir = new javax.swing.JMenuItem();
+        MenuItemAcercaDe = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
+
+        jMenu3.setText("jMenu3");
+
+        jMenu4.setText("jMenu4");
+
+        jMenu5.setText("jMenu5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestor de contactos");
 
         tituloGestorContactos.setText("GESTOR DE CONTACTOS");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jMenu6.setText("Contactos");
+
+        MenuItemAgregar.setText("Agregar");
+        jMenu6.add(MenuItemAgregar);
+
+        MenuItemEditar.setText("Editar");
+        MenuItemEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemEditarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MenuItemEditar);
+
+        MenuItemEliminar.setText("Eliminar");
+        MenuItemEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemEliminarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MenuItemEliminar);
+
+        MenuItemBuscar.setText("Buscar");
+        MenuItemBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemBuscarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MenuItemBuscar);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Archivo");
+
+        menuItemArchivoGuardar.setText("Guardar");
+        jMenu7.add(menuItemArchivoGuardar);
+
+        menuItemArchivoSalir.setText("Salir");
+        menuItemArchivoSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemArchivoSalirActionPerformed(evt);
+            }
+        });
+        jMenu7.add(menuItemArchivoSalir);
+
+        jMenuBar1.add(jMenu7);
+
+        MenuItemAcercaDe.setText("Ayuda");
+        MenuItemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemAcercaDeActionPerformed(evt);
+            }
+        });
+
+        jMenuItem5.setText("Acerca de");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        MenuItemAcercaDe.add(jMenuItem5);
+
+        jMenuBar1.add(MenuItemAcercaDe);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(246, 246, 246)
-                .addComponent(tituloGestorContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(tituloGestorContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(tituloGestorContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void MenuItemEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuItemEditarActionPerformed
+
+    private void MenuItemEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuItemEliminarActionPerformed
+
+    private void MenuItemBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuItemBuscarActionPerformed
+
+    private void MenuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAcercaDeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuItemAcercaDeActionPerformed
+
+    private void menuItemArchivoSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemArchivoSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemArchivoSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -84,14 +300,32 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ventanaPrincipal ventana = new ventanaPrincipal(); // Almacena la referencia a la ventana
+                ventanaPrincipal ventana = new ventanaPrincipal(); //Almacena la referencia a la ventana
                 ventana.setVisible(true);
-                ventana.setLocationRelativeTo(null); // Centrar el JFrame en la pantalla
+                ventana.setLocationRelativeTo(null); //entrar el JFrame en la pantalla
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MenuItemAcercaDe;
+    private javax.swing.JMenuItem MenuItemAgregar;
+    private javax.swing.JMenuItem MenuItemBuscar;
+    private javax.swing.JMenuItem MenuItemEditar;
+    private javax.swing.JMenuItem MenuItemEliminar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem menuItemArchivoGuardar;
+    private javax.swing.JMenuItem menuItemArchivoSalir;
     private javax.swing.JLabel tituloGestorContactos;
     // End of variables declaration//GEN-END:variables
 }
