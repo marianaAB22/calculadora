@@ -4,9 +4,14 @@
  */
 package MINIPROYECTO;
 
+
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
 import javax.swing.*;
@@ -21,18 +26,136 @@ import javax.imageio.ImageIO;
  */
 public class FormularioContacto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form FormularioContacto
-     */
+    private static final int TOTAL_CAMPOS = 5; 
+    private int progresoPorCampo; 
+    
     public FormularioContacto() {
         initComponents();
+        
         //botonGruop
         buttonGroup1.add(RadioButtonOpcionSoltero);
         buttonGroup1.add(RadioButtonOpcionCasado);
         buttonGroup1.add(RadioButtonOpcionUnion);
         buttonGroup1.add(RadioButtonOpcionDivorciado);
+        
+       
+        barraProgreso.setMinimum(0);
+        barraProgreso.setMaximum(100);
+        barraProgreso.setValue(0);
+        barraProgreso.setStringPainted(true);
+       
+        progresoPorCampo = 100 / TOTAL_CAMPOS;
+
+        agregarDocumentListener(campo1Nombre);
+        agregarDocumentListener(campo2Apellido);
+        agregarDocumentListener(campo3Telefono);
+        agregarDocumentListener(campo4Correo);
+        agregarDocumentListener(campo5Direccion);
+        
+        RadioButtonOpcionSoltero.addActionListener(e -> actualizarProgreso());
+        RadioButtonOpcionCasado.addActionListener(e -> actualizarProgreso());
+        RadioButtonOpcionUnion.addActionListener(e -> actualizarProgreso());
+        RadioButtonOpcionDivorciado.addActionListener(e -> actualizarProgreso());
+         
+    }
+    
+    //METODOS
+    //barra de progreso
+    private void actualizarProgreso() {
+        int camposLlenos = 0;
+        if (!campo1Nombre.getText().trim().isEmpty()) camposLlenos++;
+        if (!campo2Apellido.getText().trim().isEmpty()) camposLlenos++;
+        if (!campo3Telefono.getText().trim().isEmpty()) camposLlenos++;
+        if (!campo4Correo.getText().trim().isEmpty()) camposLlenos++;
+        if (!campo5Direccion.getText().trim().isEmpty()) camposLlenos++;
+
+        if (RadioButtonOpcionSoltero.isSelected() || 
+            RadioButtonOpcionCasado.isSelected() || 
+            RadioButtonOpcionUnion.isSelected() || 
+            RadioButtonOpcionDivorciado.isSelected()) {
+            camposLlenos++;
+        }
+        int progreso = Math.min(camposLlenos * progresoPorCampo, 100); 
+        barraProgreso.setValue(progreso);
+      
+        if (camposLlenos >= TOTAL_CAMPOS + 1) { 
+            barraProgreso.setValue(100);
+        }
+    }
+    private void agregarDocumentListener(JTextField campo) {
+        campo.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarProgreso();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarProgreso();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarProgreso();
+            }
+        });
+    }
+    
+    
+    //Geters
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
     }
 
+    public JTextField getCampo1Nombre() {
+        return campo1Nombre;
+    }
+
+    public JTextField getCampo2Apellido() {
+        return campo2Apellido;
+    }
+
+    public JTextField getCampo3Telefono() {
+        return campo3Telefono;
+    }
+
+    public JTextField getCampo4Correo() {
+        return campo4Correo;
+    }
+
+    public JTextField getCampo5Direccion() {
+        return campo5Direccion;
+    }
+    
+    //Setter para establecer el estado civil
+    public void setEstadoCivil(String estadoCivil) {
+        RadioButtonOpcionSoltero.setSelected(false);
+        RadioButtonOpcionCasado.setSelected(false);
+        RadioButtonOpcionUnion.setSelected(false);
+        RadioButtonOpcionDivorciado.setSelected(false);
+        
+        switch(estadoCivil) {
+            case "Soltero":
+                RadioButtonOpcionSoltero.setSelected(true);
+                break;
+            case "Casado":
+                RadioButtonOpcionCasado.setSelected(true);
+                break;
+            case "Unido":
+                RadioButtonOpcionUnion.setSelected(true);
+                break;
+            case "Divorciado":
+                RadioButtonOpcionDivorciado.setSelected(true);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Error", "Error", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
+        
+    }
+    
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +202,7 @@ public class FormularioContacto extends javax.swing.JPanel {
         botonCancelarCambios = new javax.swing.JButton();
         BotonAgregarImagen = new javax.swing.JButton();
         botonVolver = new javax.swing.JButton();
+        barraProgreso = new javax.swing.JProgressBar();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -104,7 +228,7 @@ public class FormularioContacto extends javax.swing.JPanel {
         jMenu8.setText("Edit");
         jMenuBar4.add(jMenu8);
 
-        jLabel1.setText("¡BIENVENIDO AL APARTADO DE AGREGAR CONTACTO!");
+        jLabel1.setText("¡BIENVENIDO AL APARTADO DE AGREGAR/EDITAR CONTACTO!");
 
         jLabel2.setText("Por favor rellena los campos para agregar el nuevo contacto");
 
@@ -219,7 +343,6 @@ public class FormularioContacto extends javax.swing.JPanel {
                                 .addComponent(jLabel3)
                                 .addGap(74, 74, 74)
                                 .addComponent(jLabel7))
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonGuardarCambios)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -240,8 +363,11 @@ public class FormularioContacto extends javax.swing.JPanel {
                                     .addComponent(RadioButtonOpcionDivorciado)
                                     .addComponent(RadioButtonOpcionCasado)
                                     .addComponent(jLabel8)))
-                            .addComponent(campo3Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 126, Short.MAX_VALUE))
+                            .addComponent(campo3Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(20, 20, 20)))
+                        .addGap(0, 175, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campo2Apellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,14 +378,18 @@ public class FormularioContacto extends javax.swing.JPanel {
                             .addComponent(campo4Correo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(botonVolver)
+                .addContainerGap(593, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1))
+                        .addGap(16, 16, 16)
+                        .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(botonVolver)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +412,7 @@ public class FormularioContacto extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(RadioButtonOpcionCasado)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -312,9 +442,11 @@ public class FormularioContacto extends javax.swing.JPanel {
                     .addComponent(botonGuardarCambios)
                     .addComponent(botonCancelarCambios)
                     .addComponent(BotonAgregarImagen))
-                .addGap(103, 103, 103)
+                .addGap(45, 45, 45)
                 .addComponent(botonVolver)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -351,14 +483,14 @@ public class FormularioContacto extends javax.swing.JPanel {
     }//GEN-LAST:event_botonGuardarCambiosActionPerformed
 
     private void botonCancelarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarCambiosActionPerformed
-        JOptionPane.showMessageDialog(null, "Cancelacioon exitosa", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-        //Limpiar los campos de entrada
+        JOptionPane.showMessageDialog(null, "Cancelacion exitosa", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         campo1Nombre.setText("");
         campo2Apellido.setText("");
         campo3Telefono.setText("");
         campo4Correo.setText("");
         campo5Direccion.setText("");
-        buttonGroup1.clearSelection(); //Limpiar seleccion de radio buttons
+        buttonGroup1.clearSelection();
+        barraProgreso.setValue(0);
     }//GEN-LAST:event_botonCancelarCambiosActionPerformed
 
     private void BotonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarImagenActionPerformed
@@ -374,37 +506,44 @@ public class FormularioContacto extends javax.swing.JPanel {
         String direccion = campo5Direccion.getText();
 
         String estadoCivil = "";
-        if (RadioButtonOpcionSoltero.isSelected()) {
+        if(RadioButtonOpcionSoltero.isSelected()) {
             estadoCivil = "Soltero";
-        } else if (RadioButtonOpcionCasado.isSelected()) {
+        }else if(RadioButtonOpcionCasado.isSelected()) {
             estadoCivil = "Casado";
-        } else if (RadioButtonOpcionUnion.isSelected()) {
+        }else if(RadioButtonOpcionUnion.isSelected()) {
             estadoCivil = "Unión libre";
-        } else if (RadioButtonOpcionDivorciado.isSelected()) {
+        }else if(RadioButtonOpcionDivorciado.isSelected()) {
             estadoCivil = "Divorciado";
         }
-        if (nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }else{
-                int respuesta = JOptionPane.showConfirmDialog(
+
+        //Verifica si todos los campos estan llenos
+        if(nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || 
+            !(RadioButtonOpcionSoltero.isSelected() || RadioButtonOpcionCasado.isSelected() || 
+            RadioButtonOpcionUnion.isSelected() || RadioButtonOpcionDivorciado.isSelected())) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos y seleccione un estado civil.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } 
+        else if(!correo.contains("@") || !correo.contains(".") || correo.indexOf('@') > correo.lastIndexOf('.')) {
+            JOptionPane.showMessageDialog(null, "El correo debe contener '@' y un dominio valido", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        else{
+            int respuesta = JOptionPane.showConfirmDialog(
                 null, 
                 "¿Seguro quieres guardar los cambios?", 
                 "Confirmacion", 
                 JOptionPane.YES_NO_OPTION
+            );
+            if(respuesta == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Informacion guardada correctamente.", 
+                    "Informacion", 
+                    JOptionPane.INFORMATION_MESSAGE
                 );
-                if (respuesta == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(
-                        null, 
-                        "Informacion guardada correctamente.", 
-                        "info", 
-                        JOptionPane.INFORMATION_MESSAGE
-                    );
-                //Obtiene referencia al JFrame principal para agregar los datos al JTable
                 JFrame framePrincipal = (JFrame) SwingUtilities.getWindowAncestor(this);
-                if (framePrincipal instanceof ventanaPrincipal) {
+                if(framePrincipal instanceof ventanaPrincipal) {
                     ventanaPrincipal VentanaPrincipal = (ventanaPrincipal) framePrincipal;
                     VentanaPrincipal.agregarContacto(nombre, apellido, telefono, correo, direccion, estadoCivil);
-                }else {
+                }else{
                     JOptionPane.showMessageDialog(
                         null, 
                         "La informacion no se guardo.", 
@@ -414,7 +553,6 @@ public class FormularioContacto extends javax.swing.JPanel {
                 }
             }
         } 
-
     }//GEN-LAST:event_botonGuardarCambiosMouseClicked
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
@@ -423,16 +561,16 @@ public class FormularioContacto extends javax.swing.JPanel {
 
     private void botonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseClicked
         JFrame framePrincipal = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if (framePrincipal instanceof ventanaPrincipal) {
+        if(framePrincipal instanceof ventanaPrincipal) {
             ventanaPrincipal VentanaPrincipal = (ventanaPrincipal) framePrincipal;
-            VentanaPrincipal.mostrarVentanaPrincipal(); //Regresar al panel principal
+            VentanaPrincipal.mostrarVentanaPrincipal();
             
             campo1Nombre.setText("");
             campo2Apellido.setText("");
             campo3Telefono.setText("");
             campo4Correo.setText("");
             campo5Direccion.setText("");
-            buttonGroup1.clearSelection(); //limpiar selección de radio buttons
+            buttonGroup1.clearSelection(); 
             
         }
     }//GEN-LAST:event_botonVolverMouseClicked
@@ -444,6 +582,7 @@ public class FormularioContacto extends javax.swing.JPanel {
     private javax.swing.JRadioButton RadioButtonOpcionDivorciado;
     private javax.swing.JRadioButton RadioButtonOpcionSoltero;
     private javax.swing.JRadioButton RadioButtonOpcionUnion;
+    private javax.swing.JProgressBar barraProgreso;
     private javax.swing.JButton botonCancelarCambios;
     private javax.swing.JButton botonGuardarCambios;
     private javax.swing.JButton botonVolver;

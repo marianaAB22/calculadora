@@ -5,12 +5,18 @@
 package MINIPROYECTO;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 
 
 /**
@@ -27,50 +33,69 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         formularioContacto = new FormularioContacto();
         panelPrincipal = new JPanel();
         
-        panelPrincipal.setLayout(new BorderLayout()); 
+        panelPrincipal.setLayout(new BorderLayout());
+        panelPrincipal.add(panelBuscar, BorderLayout.NORTH);
+        panelPrincipal.add(jScrollPane1, BorderLayout.CENTER);
 
-        // Añadir contenido inicial: título y tabla
-        panelPrincipal.add(tituloGestorContactos, BorderLayout.NORTH);
-        panelPrincipal.add(jScrollPane1, BorderLayout.CENTER); // Agrega el JScrollPane que contiene la tabla
-
-        setContentPane(panelPrincipal); // Establece el panel principal como contenido del JFrame
+        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        setContentPane(panelPrincipal); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        setLocationRelativeTo(null); 
         
         //JTable
         //Definir los nombres de las columnas
         String[] columnas = {"Nombre", "Apellido", "Telefono", "Correo", "Direccion", "Estado Civil"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         jTable1.setModel(modeloTabla);
+       
+        ImageIcon icono = new ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\lupa.png");
+        Image imagen = icono.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+
+        botonBuscar.setIcon(icono);
         
+        setFocusable(true);              
+        requestFocusInWindow();  
 
-
-        //Añade el actionListener para el menu de agregar contacto
-        MenuItemAgregar.addActionListener(new ActionListener() {
+        //Agregar KeyListener para jTable1
+        jTable1.addKeyListener(new KeyAdapter() { 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                mostrarFormularioContacto();
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_E) {
+                    MenuItemEditarActionPerformed(null);
+                }
             }
         });
         
-        menuItemArchivoSalir.addActionListener(new ActionListener() {
+
+        jTable1.addKeyListener(new KeyAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                salirPrograma();
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_N) {
+                    mostrarFormularioContacto();
+                }
             }
         });
-         
+        
+
+
+        setFocusable(true);
+        requestFocusInWindow();
+        
+        jTable1.setFocusable(true);
+        jTable1.requestFocusInWindow();
+        
     }
-    
+
     private void salirPrograma() {
         int respuesta = JOptionPane.showConfirmDialog(
-            null, 
-            "¿Estás seguro de que deseas salir?", 
-            "Confirmar Salida", 
-            JOptionPane.YES_NO_OPTION, 
+            null,
+            "¿Estas seguro de que deseas salir?",
+            "Confirmar Salida",
+            JOptionPane.YES_NO_OPTION,
             JOptionPane.WARNING_MESSAGE
         );
-
         if (respuesta == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
@@ -91,11 +116,24 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     
     public void mostrarVentanaPrincipal() {
         panelPrincipal.removeAll(); 
-        panelPrincipal.add(tituloGestorContactos, BorderLayout.NORTH); 
+        panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(jScrollPane1, BorderLayout.CENTER); 
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        panelPrincipal.add(panelBuscar, BorderLayout.NORTH); 
+        panelPrincipal.revalidate(); 
+        panelPrincipal.repaint(); 
     }
+    
+    private void filtrarPorTelefono(String telefono) {
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) jTable1.getModel());
+        jTable1.setRowSorter(sorter);
+
+        if(telefono.trim().length() == 0){
+            sorter.setRowFilter(null);
+        }else{
+            sorter.setRowFilter(RowFilter.regexFilter(telefono));
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,15 +149,16 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        tituloGestorContactos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        panelBuscar = new java.awt.Panel();
+        campoBuscar = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         MenuItemAgregar = new javax.swing.JMenuItem();
         MenuItemEditar = new javax.swing.JMenuItem();
         MenuItemEliminar = new javax.swing.JMenuItem();
-        MenuItemBuscar = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         menuItemArchivoGuardar = new javax.swing.JMenuItem();
         menuItemArchivoSalir = new javax.swing.JMenuItem();
@@ -139,8 +178,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de contactos");
 
-        tituloGestorContactos.setText("GESTOR DE CONTACTOS");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -154,9 +191,49 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        campoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoBuscarActionPerformed(evt);
+            }
+        });
+
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
+        panelBuscar.setLayout(panelBuscarLayout);
+        panelBuscarLayout.setHorizontalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
+        );
+        panelBuscarLayout.setVerticalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                        .addComponent(campoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         jMenu6.setText("Contactos");
 
         MenuItemAgregar.setText("Agregar");
+        MenuItemAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemAgregarActionPerformed(evt);
+            }
+        });
         jMenu6.add(MenuItemAgregar);
 
         MenuItemEditar.setText("Editar");
@@ -175,19 +252,16 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(MenuItemEliminar);
 
-        MenuItemBuscar.setText("Buscar");
-        MenuItemBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemBuscarActionPerformed(evt);
-            }
-        });
-        jMenu6.add(MenuItemBuscar);
-
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Archivo");
 
         menuItemArchivoGuardar.setText("Guardar");
+        menuItemArchivoGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemArchivoGuardarActionPerformed(evt);
+            }
+        });
         jMenu7.add(menuItemArchivoGuardar);
 
         menuItemArchivoSalir.setText("Salir");
@@ -223,52 +297,111 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(tituloGestorContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(120, 120, 120)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(tituloGestorContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addComponent(panelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, 
+        "CREADO POR MARIANA ALZATE BARBOSA - CORTE 2 POO", 
+        "Acerca de", 
+        JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void MenuItemEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEditarActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if(filaSeleccionada != -1){
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Quieres editar este contacto?",
+                    "Editar",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if (respuesta == JOptionPane.YES_OPTION) {
+                //Obtener los datos de la fila seleccionada
+                String nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
+                String apellido = (String) modelo.getValueAt(filaSeleccionada, 1);
+                String telefono = (String) modelo.getValueAt(filaSeleccionada, 2);
+                String correo = (String) modelo.getValueAt(filaSeleccionada, 3);
+                String direccion = (String) modelo.getValueAt(filaSeleccionada, 4);
+                String estadoCivil = (String) modelo.getValueAt(filaSeleccionada, 5);
+
+                //llenar los campos del formulario
+                formularioContacto.getCampo1Nombre().setText(nombre);
+                formularioContacto.getCampo2Apellido().setText(apellido);
+                formularioContacto.getCampo3Telefono().setText(telefono);
+                formularioContacto.getCampo4Correo().setText(correo);
+                formularioContacto.getCampo5Direccion().setText(direccion);
+
+                //establecer el estado civil en el formulario con el setter general
+                formularioContacto.setEstadoCivil(estadoCivil);
+
+                mostrarFormularioContacto();
+                modelo.removeRow(filaSeleccionada);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona un contacto para editar.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_MenuItemEditarActionPerformed
 
     private void MenuItemEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel(); //
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int respuesta = JOptionPane.showConfirmDialog(
+                   this,
+                   "¿Estas seguro de que deseas eliminar esta fila?",
+                   "Confirmacion de eliminacion",
+                   JOptionPane.YES_NO_OPTION
+            );
+            if (respuesta == JOptionPane.YES_OPTION) {
+               modelo.removeRow(filaSeleccionada);
+               JOptionPane.showMessageDialog(this, "Fila eliminada correctamente.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else {
+          JOptionPane.showMessageDialog(this, "Por favor selecciona una fila para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_MenuItemEliminarActionPerformed
 
-    private void MenuItemBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuItemBuscarActionPerformed
-
     private void MenuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAcercaDeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_MenuItemAcercaDeActionPerformed
 
     private void menuItemArchivoSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemArchivoSalirActionPerformed
-        // TODO add your handling code here:
+        salirPrograma();
     }//GEN-LAST:event_menuItemArchivoSalirActionPerformed
+
+    private void campoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscarActionPerformed
+
+    }//GEN-LAST:event_campoBuscarActionPerformed
+
+    private void MenuItemAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAgregarActionPerformed
+        mostrarFormularioContacto();
+    }//GEN-LAST:event_MenuItemAgregarActionPerformed
+
+    private void menuItemArchivoGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemArchivoGuardarActionPerformed
+        JOptionPane.showMessageDialog(null, "Se guardo la informacion", "Info", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItemArchivoGuardarActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        String telefono = campoBuscar.getText();
+        filtrarPorTelefono(telefono);
+    }//GEN-LAST:event_botonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,9 +433,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ventanaPrincipal ventana = new ventanaPrincipal(); //Almacena la referencia a la ventana
+                ventanaPrincipal ventana = new ventanaPrincipal(); 
                 ventana.setVisible(true);
-                ventana.setLocationRelativeTo(null); //entrar el JFrame en la pantalla
+                ventana.setLocationRelativeTo(null);
             }
         });
     }
@@ -310,9 +443,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuItemAcercaDe;
     private javax.swing.JMenuItem MenuItemAgregar;
-    private javax.swing.JMenuItem MenuItemBuscar;
     private javax.swing.JMenuItem MenuItemEditar;
     private javax.swing.JMenuItem MenuItemEliminar;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JTextField campoBuscar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -326,6 +460,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuItem menuItemArchivoGuardar;
     private javax.swing.JMenuItem menuItemArchivoSalir;
-    private javax.swing.JLabel tituloGestorContactos;
+    private java.awt.Panel panelBuscar;
     // End of variables declaration//GEN-END:variables
 }
