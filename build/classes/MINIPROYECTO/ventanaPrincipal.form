@@ -58,6 +58,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemAgregarActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemEditar">
               <Properties>
@@ -75,14 +78,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemEliminarActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuItemBuscar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemBuscarActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu7">
@@ -94,6 +89,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemArchivoGuardarActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemArchivoSalir">
               <Properties>
@@ -150,39 +148,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="panelBuscar" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
-                      <Component id="tituloGestorContactos" min="-2" pref="142" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
+              <EmptySpace pref="165" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="tituloGestorContactos" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="232" max="-2" attributes="0"/>
-              <EmptySpace pref="144" max="32767" attributes="0"/>
+              <Component id="panelBuscar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="164" max="-2" attributes="0"/>
+              <EmptySpace pref="180" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="tituloGestorContactos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="GESTOR DE CONTACTOS"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -198,6 +183,49 @@
               </Table>
             </Property>
           </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="java.awt.Panel" name="panelBuscar">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="campoBuscar" min="-2" pref="152" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="botonBuscar" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="campoBuscar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="botonBuscar" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="campoBuscar">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoBuscarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonBuscar">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
