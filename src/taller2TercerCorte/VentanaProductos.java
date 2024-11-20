@@ -7,7 +7,6 @@ package taller2TercerCorte;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -84,74 +83,41 @@ public class VentanaProductos extends javax.swing.JFrame {
         }
     }
     
-public org.w3c.dom.Document leerXML() {
-    try {
-        File file = new File("productosPrueba.xml");
-        if (!file.exists()) {
-            System.out.println("El archivo XML no existe.");
-            return null;
-        }
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        org.w3c.dom.Document documento = builder.parse(file);
-        return documento;
-    } catch (Exception e) {
-        System.out.println("Error al leer el archivo XML: " + e.getMessage());
-    }
-    return null;
-}
-
-
-    
-public void escribirXML(org.w3c.dom.Document documento) {
-    try {
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Transformer transformer = factory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        DOMSource source = new DOMSource(documento);
-        File file = new File("productosPrueba.xml");
-        StreamResult result = new StreamResult(file);
-        transformer.transform(source, result);
-    } catch (Exception e) {
-        System.out.println("Error al escribir el XML: " + e.getMessage());
-    }
-}
-
-    
-    public boolean modificarProductoDocumento(String nombre, String nuevoNombre, String nuevoPrecio, String nuevaCategoria, String nuevoCodigo) {
+    public org.w3c.dom.Document leerXML() {
         try {
-            File archivo = new File("productosPrueba.xml");
+            File file = new File("productosPrueba.xml");
+            if (!file.exists()) {
+                System.out.println("El archivo XML no existe.");
+                return null;
+            }
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            org.w3c.dom.Document documento = builder.parse(archivo);
-            documento.getDocumentElement().normalize();
-
-            NodeList productos = documento.getElementsByTagName("producto");
-            for (int i = 0; i < productos.getLength(); i++) {
-                Node nodo = productos.item(i);
-                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
-                    Element producto = (Element) nodo;
-                    String nombreProducto = producto.getElementsByTagName("nombre").item(0).getTextContent();
-
-                    if (nombreProducto.equals(nombre)) {
-                        producto.getElementsByTagName("nombre").item(0).setTextContent(nuevoNombre);
-                        producto.getElementsByTagName("precio").item(0).setTextContent(nuevoPrecio);
-                        producto.getElementsByTagName("categoria").item(0).setTextContent(nuevaCategoria);
-                        producto.getElementsByTagName("codigo").item(0).setTextContent(nuevoCodigo);
-  
-                        escribirXML((org.w3c.dom.Document)documento);
-                        return true;
-                    }
-                }
-            }
-        return false;
-    }catch(Exception e){
-        System.out.println("Error al modificar el producto: " + e.getMessage());
-        return false;
+            org.w3c.dom.Document documento = builder.parse(file);
+            return documento;
+        } catch (Exception e) {
+            System.out.println("Error al leer el archivo XML: " + e.getMessage());
+        }
+        return null;
     }
-}
+
+
     
-public boolean eliminarProductoDocumento(String nombre) {
+    public void escribirXML(org.w3c.dom.Document documento) {
+        try {
+            TransformerFactory factory = TransformerFactory.newInstance();
+            Transformer transformer = factory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource source = new DOMSource(documento);
+            File file = new File("productosPrueba.xml");
+            StreamResult result = new StreamResult(file);
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            System.out.println("Error al escribir el XML: " + e.getMessage());
+        }
+    }
+
+    
+public boolean modificarProductoDocumento(String nombreOriginal, String nuevoNombre, String nuevoPrecio, String nuevaCategoria, String nuevoCodigo) {
     try {
         File archivo = new File("productosPrueba.xml");
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -165,23 +131,103 @@ public boolean eliminarProductoDocumento(String nombre) {
             if (nodo.getNodeType() == Node.ELEMENT_NODE) {
                 Element producto = (Element) nodo;
                 String nombreProducto = producto.getElementsByTagName("nombre").item(0).getTextContent();
-                if (nombreProducto.equals(nombre)) {
-                    producto.getParentNode().removeChild(producto);
 
+                if (nombreProducto.equals(nombreOriginal)) {
+                    // Actualizar los valores del producto
+                    producto.getElementsByTagName("nombre").item(0).setTextContent(nuevoNombre);
+                    producto.getElementsByTagName("precio").item(0).setTextContent(nuevoPrecio);
+                    producto.getElementsByTagName("categoria").item(0).setTextContent(nuevaCategoria);
+                    producto.getElementsByTagName("codigo").item(0).setTextContent(nuevoCodigo);
+
+                    // Guardar los cambios en el archivo XML
                     escribirXML(documento);
                     return true;
                 }
             }
         }
-        return false;
+        return false; // Producto no encontrado
     } catch (Exception e) {
-        System.out.println("Error al eliminar el producto: " + e.getMessage());
+        System.out.println("Error al modificar el producto: " + e.getMessage());
         return false;
     }
 }
 
+    
+    public boolean eliminarProductoDocumento(String nombre) {
+        try {
+            File archivo = new File("productosPrueba.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            org.w3c.dom.Document documento = builder.parse(archivo);
+            documento.getDocumentElement().normalize();
 
+            NodeList productos = documento.getElementsByTagName("producto");
+            for (int i = 0; i < productos.getLength(); i++) {
+                Node nodo = productos.item(i);
+                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                    Element producto = (Element) nodo;
+                    String nombreProducto = producto.getElementsByTagName("nombre").item(0).getTextContent();
+                    if (nombreProducto.equals(nombre)) {
+                        producto.getParentNode().removeChild(producto);
 
+                        escribirXML(documento);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error al eliminar el producto: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private void cargarProductoEnFormulario() {
+        int filaSeleccionada = tablaProductos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String nombre = (String) tablaProductos.getValueAt(filaSeleccionada, 0);
+            String precio = (String) tablaProductos.getValueAt(filaSeleccionada, 1);
+            String categoria = (String) tablaProductos.getValueAt(filaSeleccionada, 2);
+            String codigo = (String) tablaProductos.getValueAt(filaSeleccionada, 3);
+
+            campoNombreProducto.setText(nombre);
+            campoPrecioProducto.setText(precio);
+            campoCategoriaProducto.setText(categoria);
+            campoCodigoProducto.setText(codigo);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para editar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void guardarProductoEditado() {
+        int filaSeleccionada = tablaProductos.getSelectedRow(); // Obtener fila seleccionada
+        if (filaSeleccionada != -1) {
+            String nombreOriginal = (String) tablaProductos.getValueAt(filaSeleccionada, 0); // Nombre original del producto
+
+            String nuevoNombre = campoNombreProducto.getText();
+            String nuevoPrecio = campoPrecioProducto.getText();
+            String nuevaCategoria = campoCategoriaProducto.getText();
+            String nuevoCodigo = campoCodigoProducto.getText();
+
+            if (nuevoNombre.isEmpty() || nuevoPrecio.isEmpty() || nuevaCategoria.isEmpty() || nuevoCodigo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+            model.removeRow(filaSeleccionada);
+
+            if (modificarProductoDocumento(nombreOriginal, nuevoNombre, nuevoPrecio, nuevaCategoria, nuevoCodigo)) {
+                model.insertRow(filaSeleccionada, new Object[]{nuevoNombre, nuevoPrecio, nuevaCategoria, nuevoCodigo});
+
+                JOptionPane.showMessageDialog(this, "Producto editado y guardado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo modificar el producto en el archivo XML.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto para editar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 
     /**
@@ -448,7 +494,7 @@ public boolean eliminarProductoDocumento(String nombre) {
     }//GEN-LAST:event_botonCargarActionPerformed
 
     private void botonCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCargarMouseClicked
-            try {
+        try {
             org.w3c.dom.Document documento = (org.w3c.dom.Document) leerXML();
             if (documento == null) {
                 System.out.println("No se pudo leer el archivo XML o no existe.");
@@ -474,32 +520,13 @@ public boolean eliminarProductoDocumento(String nombre) {
                 }
             }
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println("Error al cargar los datos en la tabla: " + e.getMessage());
         }
     }//GEN-LAST:event_botonCargarMouseClicked
 
     private void botonModificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarProductoMouseClicked
-        int filaSeleccionada = tablaProductos.getSelectedRow();
-        if(filaSeleccionada != -1){
-           String nombre = (String) tablaProductos.getValueAt(filaSeleccionada, 0); // Obtener el nombre del producto seleccionado
-           String nuevoNombre = campoNombreProducto.getText();
-           String nuevoPrecio = campoPrecioProducto.getText();
-           String nuevaCategoria = campoCategoriaProducto.getText();
-           String nuevoCodigo = campoCodigoProducto.getText();
-
-           if (modificarProductoDocumento(nombre, nuevoNombre, nuevoPrecio, nuevaCategoria, nuevoCodigo)) {
-               tablaProductos.setValueAt(nuevoNombre, filaSeleccionada, 0);
-               tablaProductos.setValueAt(nuevoPrecio, filaSeleccionada, 1);
-               tablaProductos.setValueAt(nuevaCategoria, filaSeleccionada, 2);
-               tablaProductos.setValueAt(nuevoCodigo, filaSeleccionada, 3);
-               JOptionPane.showMessageDialog(this, "Producto modificado correctamente.");
-           }else{
-               JOptionPane.showMessageDialog(this, "No se encontró el producto para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
-           }
-        }else{
-           JOptionPane.showMessageDialog(this, "Selecciona un producto para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        cargarProductoEnFormulario(); // Llama al método para cargar la fila seleccionada al formulario
     }//GEN-LAST:event_botonModificarProductoMouseClicked
 
     private void botonModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarProductoActionPerformed
@@ -509,7 +536,7 @@ public boolean eliminarProductoDocumento(String nombre) {
     private void botonEliminarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarProductoMouseClicked
         int filaSeleccionada = tablaProductos.getSelectedRow();
         if (filaSeleccionada != -1) {
-            String nombre = (String) tablaProductos.getValueAt(filaSeleccionada, 0); // Obtener el nombre del producto seleccionado
+            String nombre = (String) tablaProductos.getValueAt(filaSeleccionada, 0);
 
             if(eliminarProductoDocumento(nombre)){
 

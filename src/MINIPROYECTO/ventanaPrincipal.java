@@ -78,6 +78,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }
         });
         
+        jTable1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_D) {
+                    MenuItemEliminarActionPerformed(null);
+                }
+            }
+        });
+        
 
 
         setFocusable(true);
