@@ -133,19 +133,17 @@ public boolean modificarProductoDocumento(String nombreOriginal, String nuevoNom
                 String nombreProducto = producto.getElementsByTagName("nombre").item(0).getTextContent();
 
                 if (nombreProducto.equals(nombreOriginal)) {
-                    // Actualizar los valores del producto
                     producto.getElementsByTagName("nombre").item(0).setTextContent(nuevoNombre);
                     producto.getElementsByTagName("precio").item(0).setTextContent(nuevoPrecio);
                     producto.getElementsByTagName("categoria").item(0).setTextContent(nuevaCategoria);
                     producto.getElementsByTagName("codigo").item(0).setTextContent(nuevoCodigo);
 
-                    // Guardar los cambios en el archivo XML
                     escribirXML(documento);
                     return true;
                 }
             }
         }
-        return false; // Producto no encontrado
+        return false;
     } catch (Exception e) {
         System.out.println("Error al modificar el producto: " + e.getMessage());
         return false;
@@ -200,9 +198,9 @@ public boolean modificarProductoDocumento(String nombreOriginal, String nuevoNom
     }
 
     public void guardarProductoEditado() {
-        int filaSeleccionada = tablaProductos.getSelectedRow(); // Obtener fila seleccionada
+        int filaSeleccionada = tablaProductos.getSelectedRow();
         if (filaSeleccionada != -1) {
-            String nombreOriginal = (String) tablaProductos.getValueAt(filaSeleccionada, 0); // Nombre original del producto
+            String nombreOriginal = (String) tablaProductos.getValueAt(filaSeleccionada, 0);
 
             String nuevoNombre = campoNombreProducto.getText();
             String nuevoPrecio = campoPrecioProducto.getText();
