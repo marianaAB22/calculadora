@@ -4,6 +4,16 @@
  */
 package MINIPROYECTOCORTE3;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 /**
  *
  * @author Administrator
@@ -15,8 +25,35 @@ public class ventanaComprar extends javax.swing.JFrame {
      */
     public ventanaComprar() {
         initComponents();
+        cargarProductosDesdeXML();
     }
+    private void cargarProductosDesdeXML() {
+        try {
+            File archivoXML = new File("documentoProyecto.xml");
+            if (!archivoXML.exists()) return;
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(archivoXML);
+            doc.getDocumentElement().normalize();
+            NodeList productos = doc.getElementsByTagName("Producto");
+            DefaultTableModel model = (DefaultTableModel) tablaCompra.getModel();
+            model.setRowCount(0);
+            for (int i = 0; i < productos.getLength(); i++) {
+                Node producto = productos.item(i);
+                if (producto.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elemento = (Element) producto;
+                    String codigo = elemento.getElementsByTagName("Codigo").item(0).getTextContent();
+                    String nombre = elemento.getElementsByTagName("Nombre").item(0).getTextContent();
+                    String precio = elemento.getElementsByTagName("Precio").item(0).getTextContent();
+                    String categoria = elemento.getElementsByTagName("Categoria").item(0).getTextContent();
 
+                    model.addRow(new Object[]{codigo, nombre, precio, categoria});
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar productos desde XML: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,22 +67,23 @@ public class ventanaComprar extends javax.swing.JFrame {
         tablaCompra = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botonComprar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tablaCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CODIGO", "NOMBRE", "PRECIO"
+                "CODIGO", "NOMBRE", "PRECIO", "CATEGORIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -57,9 +95,26 @@ public class ventanaComprar extends javax.swing.JFrame {
         jLabel1.setText("!BIENVENIDO AL PORTAL DE COMPRA!");
 
         botonComprar.setText("COMPRAR");
+        botonComprar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonComprarMouseClicked(evt);
+            }
+        });
         botonComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonComprarActionPerformed(evt);
+            }
+        });
+
+        botonCancelar.setText("CANCELAR");
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCancelarMouseClicked(evt);
+            }
+        });
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
             }
         });
 
@@ -78,8 +133,10 @@ public class ventanaComprar extends javax.swing.JFrame {
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonCancelar)
+                .addGap(36, 36, 36)
                 .addComponent(botonComprar)
-                .addGap(283, 283, 283))
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +146,9 @@ public class ventanaComprar extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonComprar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonComprar)
+                    .addComponent(botonCancelar))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
@@ -99,6 +158,20 @@ public class ventanaComprar extends javax.swing.JFrame {
     private void botonComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonComprarActionPerformed
+
+    private void botonComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComprarMouseClicked
+        new VentanaInfoFactura().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonComprarMouseClicked
+
+    private void botonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMouseClicked
+        new ventanaProducto().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonCancelarMouseClicked
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,6 +209,7 @@ public class ventanaComprar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonComprar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Productos>
+                
+    
+    
+    <Producto>
+                                
+        
+        
+        <Codigo>12345</Codigo>
+                                
+        
+        
+        <Nombre>celular</Nombre>
+                                
+        
+        
+        <Precio>230000.0</Precio>
+                                
+        
+        
+        <Categoria>tecnologia</Categoria>
+                            
+    
+    
+    </Producto>
+            
+    
+    
+    
+
+</Productos>

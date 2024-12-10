@@ -4,6 +4,13 @@
  */
 package MINIPROYECTOCORTE3;
 
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  *
  * @author Administrator
@@ -15,6 +22,35 @@ public class historialFacturas extends javax.swing.JFrame {
      */
     public historialFacturas() {
         initComponents();
+        cargarDatosDesdeJSON();
+    }
+    private void cargarDatosDesdeJSON() {
+        try {
+            FileReader fileReader = new FileReader("factura.json");
+            StringBuilder jsonData = new StringBuilder();
+            int c;
+            while ((c = fileReader.read()) != -1) {
+                jsonData.append((char) c);
+            }
+            JSONArray jsonArray = new JSONArray(jsonData.toString());
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject factura = jsonArray.getJSONObject(i);
+                String idComprador = factura.getString("idComprador");
+                String nombreComprador = factura.getString("comprador");
+                JSONArray productos = factura.getJSONArray("productos");
+                int cantidadProductos = productos.length();
+                double total = factura.getDouble("total");
+                Object[] row = {idComprador, nombreComprador, cantidadProductos, total};
+
+                model.addRow(row);
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo JSON: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -27,12 +63,14 @@ public class historialFacturas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tablaHistorialFacturas = new javax.swing.JScrollPane();
+        Jtable1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        botonVolver = new javax.swing.JButton();
+        botonCerrarPrograma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("FACTURAS");
+        jLabel1.setText("HISTORIAL DE FACTURAS GENERADAS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -42,10 +80,45 @@ public class historialFacturas extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "IDENTIFICACION", "NOMBRE", "CANTIDAD PRODUCTOS", "TOTAL"
             }
-        ));
-        tablaHistorialFacturas.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Jtable1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        botonVolver.setText("VOLVER");
+        botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVolverMouseClicked(evt);
+            }
+        });
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+
+        botonCerrarPrograma.setText("CERRAR PROGRAMA");
+        botonCerrarPrograma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCerrarProgramaMouseClicked(evt);
+            }
+        });
+        botonCerrarPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarProgramaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,25 +127,64 @@ public class historialFacturas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
+                        .addGap(64, 64, 64)
+                        .addComponent(Jtable1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(tablaHistorialFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(204, 204, 204)
+                        .addComponent(botonVolver)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCerrarPrograma)))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addComponent(tablaHistorialFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(Jtable1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonVolver)
+                    .addComponent(botonCerrarPrograma))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonCerrarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarProgramaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarProgramaActionPerformed
+
+    private void botonCerrarProgramaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarProgramaMouseClicked
+        int respuesta = JOptionPane.showConfirmDialog(
+            null, 
+            "¿Desea salir del programa?", 
+            "Pregunta", 
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else if (respuesta == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "El programa no se cerro", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            System.out.println("gracias");
+        }
+    }//GEN-LAST:event_botonCerrarProgramaMouseClicked
+
+    private void botonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseClicked
+        new ventanaProducto().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonVolverMouseClicked
 
     /**
      * @param args the command line arguments
@@ -103,6 +215,7 @@ public class historialFacturas extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new historialFacturas().setVisible(true);
             }
@@ -110,8 +223,10 @@ public class historialFacturas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane Jtable1;
+    private javax.swing.JButton botonCerrarPrograma;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JScrollPane tablaHistorialFacturas;
     // End of variables declaration//GEN-END:variables
 }

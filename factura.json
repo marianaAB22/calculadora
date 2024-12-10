@@ -1,0 +1,57 @@
+[
+  {
+    "comprador": "mariana",
+    "idComprador": "1055754140",
+    "direccion": "carrera23-56-3",
+    "impuesto": 10.0,
+    "total": 258132.6,
+    "productos": [
+      {
+        "nombre": "3443",
+        "precio": 343.0
+      },
+      {
+        "nombre": "mariana",
+        "precio": 234323.0
+      }
+    ]
+  },
+  {
+    "comprador": "stiven",
+    "idComprador": "105643564",
+    "direccion": "calle washington ",
+    "impuesto": 10.0,
+    "total": 260332.6,
+    "productos": [
+      {
+        "nombre": "3443",
+        "precio": 343.0
+      },
+      {
+        "nombre": "mariana",
+        "precio": 234323.0
+      },
+      {
+        "nombre": "caja",
+        "precio": 0.0
+      },
+      {
+        "nombre": "cepillo",
+        "precio": 2000.0
+      }
+    ]
+  },
+  {
+    "comprador": "lola",
+    "idComprador": "12834334",
+    "direccion": "calle 20",
+    "impuesto": 10.0,
+    "total": 253000.0,
+    "productos": [
+      {
+        "nombre": "celular",
+        "precio": 230000.0
+      }
+    ]
+  }
+]
