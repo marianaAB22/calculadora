@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productos>
+    <producto>
+        <nombre>nevera</nombre>
+        <precio>500000</precio>
+        <categoria>electrodomestico</categoria>
+        <codigo>354738</codigo>
+    </producto>
+</productos>

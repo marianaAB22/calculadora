@@ -1,0 +1,3 @@
+lombriz,0,legumbre,43832
+casa,2368748374,inmueble,9329287
+mueble,120000,hogar,36288

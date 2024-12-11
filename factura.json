@@ -53,5 +53,60 @@
         "precio": 230000.0
       }
     ]
+  },
+  {
+    "comprador": "laura",
+    "idComprador": "107635628",
+    "direccion": "calle 20-23",
+    "impuesto": 10.0,
+    "total": 4653000.0,
+    "productos": [
+      {
+        "nombre": "celular",
+        "precio": 230000.0
+      },
+      {
+        "nombre": "pc",
+        "precio": 4000000.0
+      }
+    ]
+  },
+  {
+    "comprador": "laura",
+    "idComprador": "183892",
+    "direccion": "carrera 89",
+    "impuesto": 10.0,
+    "total": 4653000.0,
+    "productos": [
+      {
+        "nombre": "celular",
+        "precio": 230000.0
+      },
+      {
+        "nombre": "pc",
+        "precio": 4000000.0
+      }
+    ]
+  },
+  {
+    "comprador": "mariana",
+    "idComprador": "1075783",
+    "direccion": "calle 45",
+    "impuesto": 10.0,
+    "total": 1.0153E7,
+    "productos": [
+      {
+        "nombre": "celular",
+        "precio": 230000.0
+      },
+      {
+        "nombre": "pc",
+        "precio": 4000000.0
+      },
+      {
+        "nombre": "iphone 17 pro max",
+        "precio": 5000000.0
+      }
+    ]
   }
 ]

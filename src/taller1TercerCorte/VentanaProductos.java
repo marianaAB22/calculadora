@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package taller1TercerCorte;
 
 import java.io.BufferedReader;
@@ -29,7 +26,7 @@ public class VentanaProductos extends javax.swing.JFrame {
     public void cargarDatosArchivotxt(){
         BufferedReader bufferedReader = null;
         try{
-            File file = new File("C:\\Users\\Administrator\\Documents\\ING.sistemas\\tercer semestre\\POO\\calculadora\\src\\taller1TercerCorte\\productos.txt");
+            File file = new File("D:\\Documents\\NetBeansProjects\\GIT POO\\calculadora\\src\\taller1TercerCorte\\productosTaller1.txt");
             bufferedReader = new BufferedReader(new FileReader(file));
             String linea;
             int i = 0;
@@ -270,7 +267,7 @@ public class VentanaProductos extends javax.swing.JFrame {
         
         BufferedWriter bufferedWriter = null;
         try {
-            File file = new File("C:\\Users\\Administrator\\Documents\\ING.sistemas\\tercer semestre\\POO\\calculadora\\src\\taller1TercerCorte\\productos.txt");
+            File file = new File("D:\\Documents\\NetBeansProjects\\GIT POO\\calculadora\\src\\taller1TercerCorte\\productosTaller1.txt");
             bufferedWriter = new BufferedWriter(new FileWriter(file, true));
 
             

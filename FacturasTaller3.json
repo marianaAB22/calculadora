@@ -1,0 +1,18 @@
+[
+  {
+    "codigo": "45343",
+    "nombre": "lodod",
+    "cantidad": 5,
+    "precio": 234524.0,
+    "impuesto": 5,
+    "total": 1231251.0
+  },
+  {
+    "codigo": "43435",
+    "nombre": "lola",
+    "cantidad": 5,
+    "precio": 2000.0,
+    "impuesto": 4,
+    "total": 10400.0
+  }
+]

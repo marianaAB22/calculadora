@@ -1,21 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Productos>
-                
+                                
+    
+    
+    
+    
+    
+    
+    <Producto>
+                                                                
+        
+        
+        
+        
+        
+        
+        <Codigo>12345</Codigo>
+                                                                
+        
+        
+        
+        
+        
+        
+        <Nombre>celular</Nombre>
+                                                                
+        
+        
+        
+        
+        
+        
+        <Precio>230000.0</Precio>
+                                                                
+        
+        
+        
+        
+        
+        
+        <Categoria>tecnologia</Categoria>
+                                                            
+    
+    
+    
+    
+    
+    
+    </Producto>
+                            
+    
+    
+    
+
+
+    
     
     
     <Producto>
                                 
         
         
-        <Codigo>12345</Codigo>
+        <Codigo>14453</Codigo>
                                 
         
         
-        <Nombre>celular</Nombre>
+        <Nombre>pc</Nombre>
                                 
         
         
-        <Precio>230000.0</Precio>
+        <Precio>4000000.0</Precio>
                                 
         
         
@@ -26,7 +80,12 @@
     </Producto>
             
     
-    
-    
 
+
+    <Producto>
+        <Codigo>12345678</Codigo>
+        <Nombre>iphone 17 pro max</Nombre>
+        <Precio>5000000.0</Precio>
+        <Categoria>celulares</Categoria>
+    </Producto>
 </Productos>

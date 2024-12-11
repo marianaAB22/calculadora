@@ -36,7 +36,7 @@ public class VentanaFacturas extends javax.swing.JFrame {
     public List<Factura> manipularFacturasJSON() {
         BufferedReader bufferedReader = null;
         try {
-            File file = new File("Facturas.json");
+            File file = new File("FacturasTaller3.json");
             if (!file.exists()) {
                 return new ArrayList<>();
             }
@@ -67,7 +67,7 @@ public class VentanaFacturas extends javax.swing.JFrame {
             listaFacturas.add(nuevaFactura);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String cadenaJson = gson.toJson(listaFacturas);
-            File file = new File("Facturas.json");
+            File file = new File("FacturasTaller3.json");
             bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(cadenaJson);
             System.out.println("Factura agregada con eito.");
@@ -127,7 +127,7 @@ public class VentanaFacturas extends javax.swing.JFrame {
                 break;
             }
         }
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Facturas.json"))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("FacturasTaller3.json"))) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String cadenaJson = gson.toJson(listaFacturas);
             bufferedWriter.write(cadenaJson);
@@ -165,7 +165,7 @@ public class VentanaFacturas extends javax.swing.JFrame {
             }
         }
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Facturas.json"))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("FacturasTaller3.json"))) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String cadenaJson = gson.toJson(listaFacturas);
             bufferedWriter.write(cadenaJson);
